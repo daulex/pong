@@ -1,0 +1,9 @@
+body{
+  background: #000;
+  font-size: 16px;
+}
+#gc{
+  display: block;
+  margin: 3rem auto 0;
+  background: #fff;
+}
