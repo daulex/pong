@@ -14,11 +14,12 @@ var player2Score = 0;
 const WINNING_SCORE = 3;
 
 var showingWinScreen = false;
+var showingStartScreen = false;
 
 var paddle1Y = 250;
 var paddle2Y = 250;
 const PADDLE_HEIGHT = 100;
-const PADDLE_THICKNESS = 10;
+const PADDLE_THICKNESS = 2;
 
 
 function calculateMousePos(evt){
@@ -35,10 +36,12 @@ function calculateMousePos(evt){
 }
 
 function handleMouseClick(evt){
-  if(showingWinScreen){
+  if(showingStartScreen || showingWinScreen){
     player1Score = 0;
     player2Score = 0;
     showingWinScreen = false;
+    showingStartScreen = false;
+    console.log("yea");
   }
 }
 
@@ -62,6 +65,8 @@ window.onload = function(){
     var mousePos = calculateMousePos(evt);
     paddle1Y = mousePos.y;
   });
+
+  showingStartScreen = true;
 }
 
 function ballReset(){
@@ -86,7 +91,7 @@ function computerMovement(){
 }
 
 function moveEverything(){
-  if(showingWinScreen){
+  if(showingStartScreen || showingWinScreen){
     return;
   }
   computerMovement();
@@ -147,7 +152,18 @@ function drawEverything(){
     
   
     
-    canvasContext.fillText("Click to continue", 350, 500);
+    canvasContext.fillText("Click to play again", 345, 500);
+    return;
+  }
+
+  if(showingStartScreen){
+    canvasContext.fillStyle = "white";
+    canvasContext.font = "20px sans-serif";
+    canvasContext.fillText("Welcome to JavaScript Pong", 270, 300);
+    
+  
+    canvasContext.font = "12px sans-serif";
+    canvasContext.fillText("Click to start", 355, 400);
     return;
   }
 
