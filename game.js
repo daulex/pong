@@ -1,3 +1,5 @@
+// settings definitions
+
 var canvas;
 var canvasContext;
 
